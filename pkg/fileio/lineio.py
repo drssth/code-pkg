@@ -2,6 +2,21 @@ import os
 import os.path
 import logging
 
+
+class LineReader(object):
+    def __init__(self, fn):
+        self.f = open(fn, 'r')
+
+
+    def get_lines(self):
+        for line in self.f:
+            yield line
+
+
+    def __del__(self):
+        self.f.close()
+
+
 class LineWriter(object):
     def __init__(self, fn, overwrite=False):
         self.fn = fn
